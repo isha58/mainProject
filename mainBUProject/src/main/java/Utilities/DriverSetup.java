@@ -74,8 +74,8 @@ public class DriverSetup {
 			e.printStackTrace();
 		}
 
-		driver.manage().timeouts().pageLoadTimeout(45,TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(45,TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(60,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(60,TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();	
 		return driver;

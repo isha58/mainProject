@@ -11,7 +11,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
-import Pages.LandingPage;
+import Pages.LoginPage;
 import Utilities.DriverSetup;
 import Utilities.ExtentReportManager;
 import Utilities.ReadPropertiesFile;
@@ -32,34 +32,34 @@ public class BaseTestClass {
 			driver=DriverSetup.getWebDriver();
 		}
 		catch(Exception e) {
-			logger.log(Status.FAIL, e.getMessage());
+			//logger.log(Status.FAIL, e.getMessage());
 		}
 	}
 	//open application
-	public LandingPage openApplication() {
+	public LoginPage openApplication() {
 		
 		try {
 			ReadPropertiesFile rf=new ReadPropertiesFile();
 			prop = rf.readProperties();
 			String url = prop.getProperty("baseurl");  
-			logger.log(Status.INFO, "Navigating to URL "+ url);
+			//logger.log(Status.INFO, "Navigating to URL "+ url);
 			driver.get(url);
 		}
 		
 		catch(Exception e) {
-			logger.log(Status.FAIL, e.getMessage());
+			//logger.log(Status.FAIL, e.getMessage());
 		}
 		
-		LandingPage landingPage = new LandingPage(driver, logger);
-		PageFactory.initElements(driver, landingPage);
-		return landingPage;
+		LoginPage loginPage = new LoginPage(driver);//, logger);
+		PageFactory.initElements(driver, loginPage);
+		return loginPage;
 
 	}
 	
 	//flushing report
 	@AfterMethod
 	public void flushReports() {
-		report.flush();
+	//	report.flush();
 		driver.quit();
 	}
 	
